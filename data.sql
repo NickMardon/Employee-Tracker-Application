@@ -27,4 +27,35 @@ CREATE TABLE role (
   PRIMARY KEY (id)
 );
 
-INSERT INTO products (title, bid, catagory)
+INSERT INTO department (name)
+values("Sales");
+INSERT INTO department (name)
+values("Engineering");
+INSERT INTO department (name)
+values("Marketing");
+INSERT INTO department (name)
+values("Managment");
+
+INSERT INTO employee (first_name,last_name,role_id,manager_id)
+values("Bradley","Davis",1,3);
+INSERT INTO employee (first_name,last_name,role_id,manager_id)
+values("Mark","Foreman",2,4);
+INSERT INTO employee (first_name,last_name,role_id,manager_id)
+values("Mike","Sanchez",4);
+
+
+INSERT INTO role (title,salary,department_id)
+values("Jr Developer",60000,2);
+INSERT INTO role (title,salary,department_id)
+values("Sr Developer",110000,2);
+INSERT INTO role (title,salary,department_id)
+values("Sales Assistant",42000,1);
+INSERT INTO role (title,salary,department_id)
+values("Email Marketing Specialist",86000,3);
+INSERT INTO role (title,salary,department_id)
+values("Content Marketing Creator",67000,3);
+INSERT INTO role (title,salary,department_id)
+values("Sr Marketing Manager",200000,2);
+
+
+
