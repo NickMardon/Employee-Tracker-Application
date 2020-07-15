@@ -72,5 +72,55 @@ var connection = mysql.createConnection({
   }
 
     function viewEmployees(){
-
+        connection.query("SELECT * FROM employee",(err, data)=>{
+            if (err) throw err;
+            console.table(data);
+        })
     }
+
+    function viewDepartments(){
+        connection.query("SELECT * FROM department",(err, data)=>{
+            if (err) throw err;
+            console.table(data);
+        })
+    }
+
+    function viewRole(){
+        connection.query("SELECT * FROM role",(err, data)=>{
+            if (err) throw err;
+            console.table(data);
+        })
+    }
+
+    // function addEmployee(){
+    //     inquirer.prompt([
+    //             {
+    //                 type: "input",
+    //                 message: "What it the first name of the employee you would like to add?",
+    //                 name: "firstName"
+    //             },
+    //             {
+    //                 type: "input",
+    //                 message: "What it the last name of the employee you would like to add?",
+    //                 name: "lastName"
+    //             },
+    //             {
+    //                 type: "input",
+    //                 message: "What it the role of the employee you would like to add?",
+    //                 name: "role"
+    //             },
+    //             {
+    //                 type: "input",
+    //                 message: "Who is the manager of the employee you would like to add?",
+    //                 name: "manager"
+    //             }
+    //         ]).then(function(res){
+    //             console.log(res);
+    //             connection.query("INSERT INTO employee (first_name,last_name,role_id,manager_id) VALUES(?,?,?,?)", [res.firstName,res.lastName,res.role,res.manager], function (err, data) {
+    //                 if (err) throw err;
+    //                 console.table(data);
+    //             })
+    //         })
+    // }
+
+  

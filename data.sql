@@ -58,4 +58,10 @@ INSERT INTO role (title,salary,department_id)
 values("Sr Marketing Manager",200000,2);
 
 
+-- SELECT album_position,album
+-- FROM topAlbums
+-- INNER JOIN top5000 ON topAlbums.year = top5000.year;
+
+
+
 
