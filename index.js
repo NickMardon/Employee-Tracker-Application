@@ -126,35 +126,27 @@ var connection = mysql.createConnection({
                 function convertNameId(){
                     connection.query("SELECT id,title FROM role",(err, data)=>{
                         if (err) throw err;
-                        // let stringData = JSON.stringify(data);
-                        // let parsedData = JSON.parse(stringData);
                         for(let i = 0;i<data.length;i++){
                             if(role===data[i].title){
                                 role_id = data[i].id;
-                                // console.log(role_id);
                             }
                         }
                         connection.query("SELECT id,first_name FROM employee",(err, data)=>{
                             if (err) throw err;
-                            // let stringData = JSON.stringify(data);
-                            // let parsedData = JSON.parse(stringData);
                             for(let i = 0;i<data.length;i++){
                                 if(manager===data[i].first_name){
                                     manager_id= data[i].id;
-                                    console.log(manager_id);
                                 }
                             }
                             var newEmployee = new Employee(firstName,lastName,role_id,manager_id);
-                            console.log(newEmployee)
+                            console.log(newEmployee);
+                            connection.query("INSERT INTO employee (first_name,last_name,role_id,manager_id) VALUES(?,?,?,?)", [newEmployee.firstName,newEmployee.lastName,newEmployee.role_id,newEmployee.manager_id], function (err, data) {
+                                if (err) throw err;
+                                console.log(`added ${newEmployee.firstName} to employee database`);
+                        })
                         })
                     })
                 }
-                // function addToData(role,manager){
-                //     connection.query("INSERT INTO employee (first_name,last_name,role_id,manager_id) VALUES(?,?,?,?)", [firstName,lastName,role_id,manager_id], function (err, data) {
-                //         if (err) throw err;
-                //         console.table(data);
-                // })
-                // }
             })
         }
 
