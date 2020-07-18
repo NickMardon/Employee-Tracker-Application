@@ -76,6 +76,7 @@ var connection = mysql.createConnection({
         connection.query("SELECT * FROM employee",(err, data)=>{
             if (err) throw err;
             console.table(data);
+            init()
         })
     }
 
@@ -83,6 +84,7 @@ var connection = mysql.createConnection({
         connection.query("SELECT * FROM department",(err, data)=>{
             if (err) throw err;
             console.table(data);
+            init();
         })
     }
 
@@ -90,6 +92,7 @@ var connection = mysql.createConnection({
         connection.query("SELECT * FROM role",(err, data)=>{
             if (err) throw err;
             console.table(data);
+            init();
         })
     }
 
@@ -145,10 +148,29 @@ var connection = mysql.createConnection({
                                 console.log(`added ${newEmployee.firstName} to employee database`);
                         })
                         })
+                        init();
                     })
                 }
             })
         }
+
+        function addDepartment(){
+            inquirer.prompt([
+                    {
+                        type: "input",
+                        message: "What it the name of the department you would like to add?",
+                        name: "name"
+                    }
+                ]).then(function(res){
+                    // console.log(res.name)
+                    connection.query("INSERT INTO department (name) VALUES(?)",[res.name],function(err,data){
+                        if (err) throw err;
+                        console.log(`added ${res.name} to department database`);
+                    })
+                    init();
+                })
+        }
+    
 
 
 
