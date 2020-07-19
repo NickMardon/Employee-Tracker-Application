@@ -67,7 +67,7 @@ var connection = mysql.createConnection({
         }
           if(answers.userChoice==="Quit"){
               // quit app
-              console.log("Quit");
+              process.exit()
               
           }
 
@@ -232,7 +232,6 @@ var connection = mysql.createConnection({
             let name = res.name;
             let role = res.role;
             let role_id;
-            let employee_id;
             //check if name matches an employee
              connection.query("SELECT id,title FROM role",(err, data)=>{
                  if (err) throw err;
@@ -245,6 +244,7 @@ var connection = mysql.createConnection({
                     if (err) throw err;
                     console.log("Employee Role Updated")
             })
+            init();
         })
     })
 }
