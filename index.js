@@ -67,6 +67,7 @@ var connection = mysql.createConnection({
         }
           if(answers.userChoice==="Quit"){
               // quit app
+              console.log("Quit");
               
           }
 
@@ -209,14 +210,43 @@ var connection = mysql.createConnection({
                         if (err) throw err;
                         console.log(`added ${newRole.title} to role database`);
                 })
-
+                init();
             })
         }
     })
 }   
     
-
-
-
+    function updateEmployeeRole(){
+        inquirer.prompt([
+            {
+                type: "input",
+                message: "What is the name of the employee?",
+                name: "name"
+            },
+            {
+                type: "input",
+                message: "What role would you like to assign this employee",
+                name: "role"
+            }
+        ]).then(function(res){
+            let name = res.name;
+            let role = res.role;
+            let role_id;
+            let employee_id;
+            //check if name matches an employee
+             connection.query("SELECT id,title FROM role",(err, data)=>{
+                 if (err) throw err;
+                 for(let i = 0;i<data.length;i++){
+                         if(role===data[i].title){
+                         role_id = data[i].id;
+                     }
+                 }
+                    connection.query("UPDATE employee SET role_id = ? WHERE first_name = ?", [role_id,name], function (err, data) {
+                    if (err) throw err;
+                    console.log("Employee Role Updated")
+            })
+        })
+    })
+}
 
   
